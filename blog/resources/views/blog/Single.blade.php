@@ -1,12 +1,17 @@
-<html>
-    <head>Ini Home</head>
-    <body>
-    <h1>Haloo Ini Home {{$id}}</h1>
-    @foreach ($users as $user )
-        <li>{{$user}}</li>
+@extends('layout.master')
+
+@section('title','Halaman Single')
+
+@section('konten')
+    <h1>Selamat Datang {{$id}}</h1>
+    @foreach ($users as $v)
+        <li>{{$v}}</li>        
     @endforeach
-    </body>
-    <footer>
-        copyright by iqbalcakep.com
-    </footer>
-</html>
+
+    @if (count($users)>5)
+        User Lebih Dari 5
+    @else
+        User Kurang Dari 5
+    @endif
+
+@endsection
