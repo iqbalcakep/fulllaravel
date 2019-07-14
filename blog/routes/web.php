@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return View('blog/Home');
 });
+
+Route::get('/blog', 'BlogController@index');
+Route::get('/blog/{id}', 'BlogController@show');
+
