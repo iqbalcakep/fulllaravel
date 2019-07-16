@@ -8,4 +8,9 @@ class Blog extends Model
 {
     // protected $table="";
     public $timestamps=false;
+
+    //whitelist
+    protected $fillable=["title","description"];
+    //blacklist
+    // protected $guarded=[""];
 }
