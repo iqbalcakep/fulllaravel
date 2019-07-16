@@ -39,8 +39,14 @@ class BlogController extends Controller
         // ]);
 
         //delete
-        // $blog = Blog::find(3);
+        // $blog = Blog::find(4);
         // $blog->delete();
+        $blog = null;
+        if(!$blog)
+        abort(404);
+        //restore
+        
+        Blog::withTrashed()->restore();
 
         $data["blogs"] = Blog::all();
         return View("blog/Home",$data);
