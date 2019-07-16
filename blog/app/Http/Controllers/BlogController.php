@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Model\Blog;
 
 class BlogController extends Controller
 {
     function index(){
-        return View("blog/Home");
+        $data["blogs"] = Blog::all();
+        return View("blog/Home",$data);
     }
 
     function show($id){
@@ -16,8 +18,7 @@ class BlogController extends Controller
         //     "username"=>"siapa aja",
         //     "password"=> "123"
         // ]);
-        $users=DB::table('tb_user')->get()->where("id",$id);
-
-       return View("blog/Single",["id" => $id,"users"=>$users]);
+       $data["blogs_detail"]= Blog::where('id',$id)->get();
+       return View("blog/Single",$data);
     }
 }
