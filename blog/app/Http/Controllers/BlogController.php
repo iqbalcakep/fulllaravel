@@ -39,14 +39,14 @@ class BlogController extends Controller
         // ]);
 
         //delete
-        $blog = Blog::find(4);
-        $blog->delete();
+        // $blog = Blog::find(4);
+        // $blog->delete();
         // $blog = null;
-        if(!$blog)
-        abort(404);
+        // if(!$blog)
+        // abort(404);
         //restore
         
-        Blog::withTrashed()->restore();
+        // Blog::withTrashed()->restore();
 
         $data["blogs"] = Blog::all();
         return View("blog/Home",$data);
@@ -81,5 +81,25 @@ class BlogController extends Controller
             $data
         );
         return Redirect('/blog/'.$id);
+    }
+
+    public function create(){
+
+        return View("blog/Create");
+    }
+
+    function proses_create(Request $r){
+        Blog::create([
+                  "title" => $r->title,
+            "description" => $r->description
+        ]);
+
+        return Redirect('/blog');
+
+    }
+
+    function delete($id){
+        Blog::find($id)->delete();
+        return Redirect("/blog");
     }
 }

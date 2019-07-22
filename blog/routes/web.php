@@ -21,6 +21,13 @@ Route::get('/home', function () {
 
 Route::get('/blog', 'BlogController@index');
 Route::get('/blog/{id}', 'BlogController@show');
+//tambah
+Route::get('/create','BlogController@create');
+Route::post('/blog','BlogController@proses_create');
+
+//Edit
 Route::get('/blog/{id}/edit', 'BlogController@edit');
 Route::put('/blog/{id}','BlogController@proses_edit');
 
+//Delete
+Route::delete('/blog/{id}', 'BlogController@delete');
