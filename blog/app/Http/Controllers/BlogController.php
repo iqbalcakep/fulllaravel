@@ -39,9 +39,9 @@ class BlogController extends Controller
         // ]);
 
         //delete
-        // $blog = Blog::find(4);
-        // $blog->delete();
-        $blog = null;
+        $blog = Blog::find(4);
+        $blog->delete();
+        // $blog = null;
         if(!$blog)
         abort(404);
         //restore
@@ -59,5 +59,27 @@ class BlogController extends Controller
         // ]);
        $data["blogs_detail"]= Blog::where('id',$id)->get();
        return View("blog/Single",$data);
+    }
+
+    function edit($id){
+        $blogs = Blog::find($id);
+        if(!$blogs)
+        abort(404);
+
+        // dd($blogs);
+
+        return View("blog/Edit",["blogs"=>$blogs]);
+    }
+
+    function proses_edit(Request $r,$id){
+        // dd($r->title);
+        $data = array(
+            "title"=>$r->title,
+            "description"=>$r->description
+        );
+        Blog::where("id",$id)->update(
+            $data
+        );
+        return Redirect('/blog/'.$id);
     }
 }
