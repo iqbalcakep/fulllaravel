@@ -89,6 +89,10 @@ class BlogController extends Controller
     }
 
     function proses_create(Request $r){
+        $this->validate($r,[
+            "title" => "required|min:5",
+            "description" => "required"
+        ]);
         Blog::create([
                   "title" => $r->title,
             "description" => $r->description
